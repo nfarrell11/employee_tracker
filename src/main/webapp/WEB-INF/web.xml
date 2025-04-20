@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+    version="4.0"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:javaee="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+	<display-name>COMP 3601 | Assignment 2</display-name>
+	<servlet>
+		<servlet-name>EmployeeServlet</servlet-name>
+		<servlet-class>ca.bcit.comp3601.a01325163_assign2.employee.presentation.controller.EmployeeServlet</servlet-class>
+		<init-param>
+			<param-name>driver</param-name>
+			<param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+		</init-param>
+		<init-param>
+			<param-name>url</param-name>
+			<param-value>jdbc:sqlserver://java-sql.ad.bcit.ca:1433;databaseName=jspweb;encrypt=true;trustServerCertificate=true;</param-value>
+		</init-param>
+		<init-param>
+			<param-name>user</param-name>
+			<param-value>javastudent</param-value>
+		</init-param>
+		<init-param>
+			<param-name>password</param-name>
+			<param-value>compjava</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EmployeeServlet</servlet-name>
+		<url-pattern>employees</url-pattern>
+	</servlet-mapping>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/jsp/errors.jsp</location>
+	</error-page>
+	<welcome-file-list>
+		<welcome-file>/employees</welcome-file>
+	</welcome-file-list>
+
+</web-app>

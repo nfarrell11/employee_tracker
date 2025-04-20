@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ca.bcit.comp3601</groupId>
+  <artifactId>a01325163_assign2</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>a01325163_assign2 Maven Employee Webapp</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+	  <groupId>org.apache.logging.log4j</groupId>
+	  <artifactId>log4j-core</artifactId>
+	  <version>2.13.3</version>
+	</dependency>
+    <dependency>
+	  <groupId>javax.servlet</groupId>
+	  <artifactId>javax.servlet-api</artifactId>
+	  <version>4.0.0</version>
+	  <scope>provided</scope>
+	</dependency>
+	<dependency>
+	  <groupId>javax.servlet</groupId>
+	  <artifactId>jsp-api</artifactId>
+	  <version>2.0</version>
+	  <scope>provided</scope>
+	</dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+	  <groupId>javax.servlet</groupId>
+	  <artifactId>jstl</artifactId>
+	  <version>1.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <version>12.8.1.jre11</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>a01325163_assign2</finalName>
+    <plugins>
+      <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>3.1</version>
+		<configuration>
+			<source>11</source>
+			<target>11</target>
+		</configuration>
+	  </plugin>
+        <!--  Creating war file automatically placed in the deployments folder by using 'maven-war-plugin'. -->
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-war-plugin</artifactId>
+		<version>3.3.2</version>
+		<configuration>
+			<!--  Copying the created war file into the Deployment folder of WildFly -->
+			<outputDirectory>${env.JBOSS_HOME}/standalone/deployments</outputDirectory>				
+				<!--  Including source code to the generated war file -->
+			<webResources>
+				<resource>
+					<!-- MUST INCLUDE FOR LAB SUBMISSIONS BUT NOT INDUSTRY PRACTICE TO DO THIS -->
+					<directory>${project.build.sourceDirectory}</directory>
+					<!-- IDE suggested adding 'project.' to the path -->
+					<targetPath>WEB-INF/classes</targetPath>
+				</resource>
+			</webResources>
+		</configuration>
+	  </plugin>
+    </plugins>
+  </build>
+</project>

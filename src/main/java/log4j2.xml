@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration status="warn">
+	<Properties>
+		<Property name="LOG_DIR">${env:JBOSS_HOME}/standalone/deployments/logs/comp3601</Property>
+	</Properties>
+
+	<Appenders>
+		<RollingFile name="fileLogger"
+			fileName="${LOG_DIR}/a01325163_assign2.log"
+			filePattern="${LOG_DIR}/a01325163_assign2.log.%d{dd-MMM}.log.gz"
+			ignoreExceptions="false">
+			<PatternLayout>
+				 <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} %L- %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy
+					filePattern="${LOG_DIR}/application.%d{dd-MMM-hh}.log.gz" />
+				<SizeBasedTriggeringPolicy size="1MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+			
+		</RollingFile>
+
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<appender-ref ref="console" />
+			<appender-ref ref="fileLogger" />
+		</Root>
+	</Loggers>
+</Configuration>
